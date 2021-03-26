@@ -1,3 +1,7 @@
+///////////////// 269.Exporting and importing modules ////////////////////////
+///////////////// 269.Exporting and importing modules ////////////////////////
+///////////////// 269.Exporting and importing modules ////////////////////////
+/*
 // Importing moduld
 // all import statements are hoisted to the top
 // import { addToCart,
@@ -21,6 +25,43 @@ add('pizza', 2); // results of the default export in the shoppingCart.js file
 // imports are a live connection to exports
 
 add('bread', 5);
-add('apple', 4);
+add('apples', 4);
 
 console.log(cart);
+*/
+
+///////////////////////////// 269. The Module Pattern //////////////////////////
+///////////////////////////// 269. The Module Pattern //////////////////////////
+///////////////////////////// 269. The Module Pattern //////////////////////////
+/*
+
+*/
+
+const ShoppingCart2 = (function() { // write a function as a immidietly invoked expression ( for when we need data returned once ), we can save it to a variable
+    const cart = [];
+    const shippingCost = 10;
+    const totalPrice = 237;
+    const totalQuantity = 23;
+
+    const addToCart = function (product, quantity) { 
+        cart.push({ product, quantity});
+        console.log(`${quantity} ${product} added to cart (shipping cost is ${shippingCost})`);
+    };
+
+    const orderStock = function (product, quantity) { 
+        cart.push({ product, quantity});
+        console.log(`${quantity} ${product} ordered from supplier`);
+    };
+
+    return {
+        addToCart,
+        cart,
+        totalPrice,
+        totalQuantity
+    };
+})();
+
+ShoppingCart2.addToCart('apple' , 4);
+ShoppingCart2.addToCart('apple' , 2);
+console.log(ShoppingCart2);
+console.log(ShoppingCart2.shippingCost); // undefined
