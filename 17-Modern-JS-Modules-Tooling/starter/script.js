@@ -97,7 +97,6 @@ npm init : creates a package.json file,
 npm i lodash-es : lodash 
 npm i : installs dependancies listed in package.json file
 
-*/
 
 import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
 
@@ -115,3 +114,45 @@ state.user.loggedIn = false;
 console.log(stateClone);
 
 console.log(stateDeepClone);
+*/
+
+/////////////////// 273.Bundling with Parcel and NPM scripts ////////////////////
+/////////////////// 273.Bundling with Parcel and NPM scripts ////////////////////
+/////////////////// 273.Bundling with Parcel and NPM scripts ////////////////////
+/*
+npm i parcel --save -dev : Error troubleshooting at about 7:00
+
+the dist folder is created with the files that will be distributed
+
+        setting up start and build scripts
+"start": "parcel index.html",
+"build": "parcel build index.html"
+
+had to change the main in package.json to   "main": "script.html",
+
+we can install parcel glabally : npm i parcel -g, however it is ideal to install it locally to stay up to date
+
+*/
+
+
+// import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
+
+const state = {
+    cart: [
+        {product: 'bread', quantity: 5 },
+        {product: 'pizza', quantity: 5 },
+    ],
+    user: {loggedIn: true}, 
+};
+const stateClone = Object.assign({}, state); // this is what lodash is for ??? 
+const stateDeepClone = cloneDeep(state);  // gonna have to circle back
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+console.log(stateDeepClone);
+
+if(module.hot) { // parcel,  helps the page not dreload alot 
+    module.hot.accept();
+}
