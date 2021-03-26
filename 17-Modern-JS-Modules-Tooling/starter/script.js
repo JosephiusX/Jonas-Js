@@ -132,9 +132,6 @@ had to change the main in package.json to   "main": "script.html",
 
 we can install parcel glabally : npm i parcel -g, however it is ideal to install it locally to stay up to date
 
-*/
-
-
 // import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
 import cloneDeep from 'lodash-es';
 
@@ -156,3 +153,59 @@ console.log(stateDeepClone);
 if(module.hot) { // parcel,  helps the page not dreload alot 
     module.hot.accept();
 }
+*/
+
+//////////////// 274. Configuring Babel and Polyfilling ////////////////////////
+//////////////// 274. Configuring Babel and Polyfilling ////////////////////////
+//////////////// 274. Configuring Babel and Polyfilling ////////////////////////
+/*
+
+
+ */
+
+// I need to go back over this section making sure to use the same versions as he does to get the class on 189 to work properly
+
+import cloneDeep from 'lodash-es';
+
+const state = {
+    cart: [
+        {product: 'bread', quantity: 5 },
+        {product: 'pizza', quantity: 5 },
+    ],
+    user: {loggedIn: true}, 
+};
+const stateClone = Object.assign({}, state); // this is what lodash is for ??? 
+const stateDeepClone = cloneDeep(state);  // gonna have to circle back
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+console.log(stateDeepClone);
+
+if(module.hot) { // parcel,  helps the page not dreload alot 
+    module.hot.accept();
+}
+
+// class Person { // this is not working. its saying i need classProperties plugin but when i install it with npm the error persists
+//     greeting = "Hey";
+//     constructor(name) {
+//         this.name = name;
+//         console.log(`${this.greeting}, ${this.name}`);
+//     }
+// }
+// const jonas = new Person('Jonas');
+
+console.log('Jonas' ?? null); // this part is working with babyle
+Promise.resolve('TEST').then(x => console.log(x));
+
+import 'core-js/stable';
+// import 'core-js/stable/array/find'; // cherry pick what part we want to reduce bundle size
+// import 'core-js/stable/promise';
+
+// Polyfilling async functions
+import 'regenerator-runtime/runtime'; // normally imports go at the top of the file however they are hoisted anyway
+
+
+
+
+
