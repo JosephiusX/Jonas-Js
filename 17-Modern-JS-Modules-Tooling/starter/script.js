@@ -35,7 +35,6 @@ console.log(cart);
 ///////////////////////////// 269. The Module Pattern //////////////////////////
 /*
 
-*/
 
 const ShoppingCart2 = (function() { // write a function as a immidietly invoked expression ( for when we need data returned once ), we can save it to a variable
     const cart = [];
@@ -65,3 +64,54 @@ ShoppingCart2.addToCart('apple' , 4);
 ShoppingCart2.addToCart('apple' , 2);
 console.log(ShoppingCart2);
 console.log(ShoppingCart2.shippingCost); // undefined
+*/
+
+////////////////////////////// 270.Common JS Modules ////////////////////////////
+////////////////////////////// 270.Common JS Modules ////////////////////////////
+////////////////////////////// 270.Common JS Modules ////////////////////////////
+
+/*
+
+export.addTocartfunction (product, quantity) { // this dosent work in the browser but it will work in node js
+    cart.push({ product, quantity});
+    console.log(`${quantity} ${product} added to cart (shipping cost is ${shippingCost})`);
+};
+
+// Import
+const { addToCart } = require('./shoppingCart.js');
+*/
+
+//////////////////// 271. A Brief Introduction to the Command Line /////////////////////
+//////////////////// 271. A Brief Introduction to the Command Line /////////////////////
+//////////////////// 271. A Brief Introduction to the Command Line /////////////////////
+/*
+
+*/
+
+///////////////////////// 272.Introduction to NPM ////////////////////////////
+///////////////////////// 272.Introduction to NPM ////////////////////////////
+///////////////////////// 272.Introduction to NPM ////////////////////////////
+/*
+
+npm init : creates a package.json file, 
+npm i lodash-es : lodash 
+npm i : installs dependancies listed in package.json file
+
+*/
+
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+
+const state = {
+    cart: [
+        {product: 'bread', quantity: 5 },
+        {product: 'pizza', quantity: 5 },
+    ],
+    user: {loggedIn: true}, 
+};
+const stateClone = Object.assign({}, state); // this is what lodash is for ??? 
+const stateDeepClone = cloneDeep(state);  // gonna have to circle back
+
+state.user.loggedIn = false;
+console.log(stateClone);
+
+console.log(stateDeepClone);
