@@ -161,7 +161,6 @@ if(module.hot) { // parcel,  helps the page not dreload alot
 /*
 
 
- */
 
 // I need to go back over this section making sure to use the same versions as he does to get the class on 189 to work properly
 
@@ -204,6 +203,79 @@ import 'core-js/stable';
 
 // Polyfilling async functions
 import 'regenerator-runtime/runtime'; // normally imports go at the top of the file however they are hoisted anyway
+ */
+
+///////////////// 275. Review: Writing Clean and Modern JavaScript  ///////////////////
+///////////////// 275. Review: Writing Clean and Modern JavaScript  ///////////////////
+///////////////// 275. Review: Writing Clean and Modern JavaScript  ///////////////////
+/*
+                READABLE CODE
+
+- write code so that others can understand it
+
+- write code so that I can understand it in one year
+
+- avoid too 'clever' and overcomplicated solutions
+
+- use descriptive variable names: what they contain
+
+- Use descriptive function names: what they do
+
+                GENERAL
+            
+- Use DRY principle (refactor your code)
+
+- Dont Pollute global namespace, encapsulate instead
+
+- Dont use var
+
+- Use strong type checks (=== and !==)
+
+                FUNCTIONS
+
+- Generally, functions should do only one thing
+
+- Don't use more than 3 function paraneters
+
+- Use default parameters
+
+- Generally, return same data type as recieved
+
+- Use arrow functions when they make code more readable
+
+                OOp
+
+- Use ES6 classes
+
+- Encapsulate data and don't mutate it from outside the class
+
+- Implement method chaining
+
+- Do NOT use arrow functions as methods (in regular objects) so we can have assess to this keyword
+
+                AVOIDING NESTED CODE
+
+- Use early return (gaurd clauses)
+
+- Use ternary (conditional) or logicUal operators instead of if
+
+- Use multiple if instead of if/else-if
+
+- Avoid for loops, use array methods instead
+
+- Avoid callback-based asynchronous APIs
+
+                ASYNCHRONOUS CODE
+
+- Consume promises with async/await for best readability
+
+- Whenever possible, run promises in parallel(Promise.all)
+
+- Handle errors and promises
+
+*/
+
+
 
 
 
