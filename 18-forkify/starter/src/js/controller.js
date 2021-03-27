@@ -1,6 +1,9 @@
 // import icon from '../img/icons.svg'; // Parcel 1
 import icons from 'url:../img/icons.svg'; // Parcel 2
-console.log(icons); // logs the path of the icon file  
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
+//console.log(icons); // logs the path of the icon file  
 
 const recipeContainer = document.querySelector('.recipe');
 
