@@ -1,7 +1,7 @@
 // import icon from '../img/icons.svg'; // Parcel 1
 import icons from 'url:../img/icons.svg'; // Parcel 2
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
+import 'core-js/stable'; // importing after installing from npm
+import 'regenerator-runtime/runtime'; // same
 
 //console.log(icons); // logs the path of the icon file  
 
@@ -33,11 +33,15 @@ const renderSpinner = function(parentEl) { // using the same markup variable
 
 const showRecipe = async function() {
   try {
+    const id = window.location.hash.slice(1);
+    console.log(id);
+
+    if(!id) return; // guard clause
+
     // 1) Loading Recipe
     renderSpinner(recipeContainer);
     const res = await fetch( // send request to api using fetch
-      'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886'
-      // 'https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604691c37cdc054bd0d4'
+      `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
     ); // this ceeates a promise
     const data = await res.json(); // this awaits that promise
 
@@ -155,6 +159,9 @@ const showRecipe = async function() {
   }
 };
 
-showRecipe(); 
+['hashchange', 'load'].forEach(ev => window.addEventListener(ev, showRecipe))
+// instad of event handlers for the same function we can do a loop as demonstrated above
+// window.addEventListener('hashchange', showRecipe);
+// window.addEventListener('load', showRecipe);
 
 
