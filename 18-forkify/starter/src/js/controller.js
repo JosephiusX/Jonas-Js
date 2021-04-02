@@ -34,7 +34,7 @@ const renderSpinner = function(parentEl) { // using the same markup variable
 }
 
 const controlRecipes = async function() {
-  try {
+  try {x
     const id = window.location.hash.slice(1);
     console.log(id);
 
