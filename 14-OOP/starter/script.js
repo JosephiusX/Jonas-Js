@@ -5,19 +5,20 @@
 //////////////////////////// 205 constructor functions and the new Operator //////////////////////
 /*
 
+*/
 
-const Person = function(firstName, birthYear) {
-    // Instances prioperties
-    this.firstName = firstName;
-    this.birthyear = birthYear;
-    
-    // // never create method inside constructor function 
-    // this.calcAge = function() {
-    //     console.log(2037 - this.birthYear);
-    // };
+const Person = function (firstName, birthYear) {
+  // Instances prioperties
+  this.firstName = firstName;
+  this.birthyear = birthYear;
+
+  // // never create method inside constructor function
+  // this.calcAge = function() {
+  //     console.log(2037 - this.birthYear);
+  // };
 };
 
-const jonas = new Person('Jonas', 1991);  // creates a new person with firstname of Jonas and birthyear of 1991 and and assigned it to a jonas object
+const jonas = new Person('Jonas', 1991); // creates a new person with firstname of Jonas and birthyear of 1991 and and assigned it to a jonas object
 console.log(jonas);
 
 // 1. New {} is created
@@ -35,15 +36,14 @@ console.log(matilda, jack);
 console.log(jonas instanceof Person); // true
 
 Person.hey = function () {
-    console.log('Hey there 👋');
-    console.log(this);
+  console.log('Hey there 👋');
+  console.log(this);
 };
 
 Person.hey();
 
-
 ///////////////////////////////////// 206 Prototypes ////////////////////////////////////////
-
+/*
 // Prototypes
 console.log(Person.prototype);
 
@@ -143,7 +143,6 @@ bmw.accelerate();
 bmw.accelerate();
 bmw.break();
 */
-
 
 //////////////////////////////////// 210 ES6 Classes /////////////////////////////////
 //////////////////////////////////// 210 ES6 Classes /////////////////////////////////
@@ -482,11 +481,11 @@ EV.prototype.accelerate = function () {
      
     */
 
-    ///////////// 217. Inheritance Between "Classes": ES6 Classes ///////////////////////
-    ///////////// 217. Inheritance Between "Classes": ES6 Classes ///////////////////////
-    ///////////// 217. Inheritance Between "Classes": ES6 Classes ///////////////////////
+///////////// 217. Inheritance Between "Classes": ES6 Classes ///////////////////////
+///////////// 217. Inheritance Between "Classes": ES6 Classes ///////////////////////
+///////////// 217. Inheritance Between "Classes": ES6 Classes ///////////////////////
 
-    /*
+/*
     
     
        class PersonCl {
@@ -548,10 +547,10 @@ EV.prototype.accelerate = function () {
     martha.calcAge();
     */
 
-    //////////// 218. Inheritance Between "Classes": Object.create ////////////////////
-    //////////// 218. Inheritance Between "Classes": Object.create ////////////////////
-    //////////// 218. Inheritance Between "Classes": Object.create ////////////////////
-    /*
+//////////// 218. Inheritance Between "Classes": Object.create ////////////////////
+//////////// 218. Inheritance Between "Classes": Object.create ////////////////////
+//////////// 218. Inheritance Between "Classes": Object.create ////////////////////
+/*
     
     const PersonProto = {
         calcAge() {
@@ -581,8 +580,7 @@ EV.prototype.accelerate = function () {
     jay.calcAge();
     */
 
-    ////////////////////// 
-
+//////////////////////
 
 //////////////////// 219. Another Class Example ///////////////////////////////////////
 //////////////////// 219. Another Class Example ///////////////////////////////////////
@@ -855,12 +853,10 @@ class Account {
  acc1.deposit(300).deposit(500).withdraw(35).requestLoan(25000).withdraw(4000);
  console.log(acc1.getMovements());
 */
- 
- /////////////////////////////////////// Coding Challenge #4 /////////////////////////////////
- /////////////////////////////////////// Coding Challenge #4 /////////////////////////////////
- /////////////////////////////////////// Coding Challenge #4 /////////////////////////////////
 
-
+/////////////////////////////////////// Coding Challenge #4 /////////////////////////////////
+/////////////////////////////////////// Coding Challenge #4 /////////////////////////////////
+/////////////////////////////////////// Coding Challenge #4 /////////////////////////////////
 
 /* 
 1. Re-create challenge #3, but this time using ES6 classes: create an 'EVCl' child class of the 'CarCl' class
@@ -913,58 +909,59 @@ const Car = function(make, speed){
  
 */
 
+// walkthrough
 
- // walkthrough 
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
 
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} is going at ${this.speed}km/h `);
+  }
 
- class CarCl {
-    constructor(make, speed) {
-        this.make = make;
-        this.speed = speed;
-    }
-    
-    accelerate() {
-        this.speed += 10;
-        console.log(`${this.make} is going at ${this.speed}km/h `);
-    }
-    
-    brake() {
-        this.speed -= 5;
-        console.log(`${this.make} is going at ${this.speed}km/h `);
-        return this; // implimenting ability to chain
-    }
-    
-    get SpeedUS() {
-        return this.speed / 1.6;
-    }
-    
-    set SpeedUS(speed) { // peramiter is setting a value in the object
-        this.speed = speed * 1.6;
-    }
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} is going at ${this.speed}km/h `);
+    return this; // implimenting ability to chain
+  }
+
+  get SpeedUS() {
+    return this.speed / 1.6;
+  }
+
+  set SpeedUS(speed) {
+    // peramiter is setting a value in the object
+    this.speed = speed * 1.6;
+  }
 }
 
-class EVCL extends CarCl { // makes EVCL a part of CarCl
-    #charge; // making charge Private
-    
-    constructor(make, speed, charge) {
+class EVCL extends CarCl {
+  // makes EVCL a part of CarCl
+  #charge; // making charge Private
+
+  constructor(make, speed, charge) {
     super(make, speed); // call super instead of the car and remove the this keyword
     this.#charge = charge; // making charge private
-};
+  }
 
-
-chargeBattery (chargeTo) {
+  chargeBattery(chargeTo) {
     this.#charge = chargeTo; // making charge private
     return this; // implimenting ability to chain
-};
+  }
 
-accelerate = function () {
+  accelerate = function () {
     this.speed += 20;
     this.#charge--; // making charge private
     console.log(
-        `${this.make} is going at ${this.speed} km/h, with a charge of ${this.#charge}`
-        );
-        return this
-    };
+      `${this.make} is going at ${this.speed} km/h, with a charge of ${
+        this.#charge
+      }`
+    );
+    return this;
+  };
 }
 
 const rivian = new EVCL('Rivian', 120, 23);
