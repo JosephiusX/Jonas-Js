@@ -6,7 +6,6 @@
 /*
 
 */
-
 const Person = function (firstName, birthYear) {
   // Instances prioperties
   this.firstName = firstName;
@@ -867,6 +866,8 @@ DATA CAR 1: 'Rivian' going at 120 km/h, with a charge of 23%
 
 GOOD LUCK 😀
 
+
+
 const Car = function(make, speed){
         this.make = make; // set male to make we recieve
         this.speed = speed; // set speed to speed we recieve 
@@ -906,67 +907,65 @@ const Car = function(make, speed){
      tesla.brake();
      tesla.accelerate();
      
- 
+     // walkthrough
+     
+     class CarCl {
+       constructor(make, speed) {
+         this.make = make;
+         this.speed = speed;
+       }
+     
+       accelerate() {
+         this.speed += 10;
+         console.log(`${this.make} is going at ${this.speed}km/h `);
+       }
+     
+       brake() {
+         this.speed -= 5;
+         console.log(`${this.make} is going at ${this.speed}km/h `);
+         return this; // implimenting ability to chain
+       }
+     
+       get SpeedUS() {
+         return this.speed / 1.6;
+       }
+     
+       set SpeedUS(speed) {
+         // peramiter is setting a value in the object
+         this.speed = speed * 1.6;
+       }
+     }
+     
+     class EVCL extends CarCl {
+       // makes EVCL a part of CarCl
+       #charge; // making charge Private
+     
+       constructor(make, speed, charge) {
+         super(make, speed); // call super instead of the car and remove the this keyword
+         this.#charge = charge; // making charge private
+       }
+     
+       chargeBattery(chargeTo) {
+         this.#charge = chargeTo; // making charge private
+         return this; // implimenting ability to chain
+       }
+     
+       accelerate = function () {
+         this.speed += 20;
+         this.#charge--; // making charge private
+         console.log(
+           `${this.make} is going at ${this.speed} km/h, with a charge of ${
+             this.#charge
+           }`
+         );
+         return this;
+       };
+     }
+     
+     const rivian = new EVCL('Rivian', 120, 23);
+     console.log(rivian);
+     // console.log(rivian.#charge); // success - Private field #charge must be declared in an enclosing class
+     rivian.accelerate().accelerate().accelerate().brake().chargeBattery(50); // now they can chain properly
+     
+     console.log(rivian.speedUS); // chile also inherits setters and getters
 */
-
-// walkthrough
-
-class CarCl {
-  constructor(make, speed) {
-    this.make = make;
-    this.speed = speed;
-  }
-
-  accelerate() {
-    this.speed += 10;
-    console.log(`${this.make} is going at ${this.speed}km/h `);
-  }
-
-  brake() {
-    this.speed -= 5;
-    console.log(`${this.make} is going at ${this.speed}km/h `);
-    return this; // implimenting ability to chain
-  }
-
-  get SpeedUS() {
-    return this.speed / 1.6;
-  }
-
-  set SpeedUS(speed) {
-    // peramiter is setting a value in the object
-    this.speed = speed * 1.6;
-  }
-}
-
-class EVCL extends CarCl {
-  // makes EVCL a part of CarCl
-  #charge; // making charge Private
-
-  constructor(make, speed, charge) {
-    super(make, speed); // call super instead of the car and remove the this keyword
-    this.#charge = charge; // making charge private
-  }
-
-  chargeBattery(chargeTo) {
-    this.#charge = chargeTo; // making charge private
-    return this; // implimenting ability to chain
-  }
-
-  accelerate = function () {
-    this.speed += 20;
-    this.#charge--; // making charge private
-    console.log(
-      `${this.make} is going at ${this.speed} km/h, with a charge of ${
-        this.#charge
-      }`
-    );
-    return this;
-  };
-}
-
-const rivian = new EVCL('Rivian', 120, 23);
-console.log(rivian);
-// console.log(rivian.#charge); // success - Private field #charge must be declared in an enclosing class
-rivian.accelerate().accelerate().accelerate().brake().chargeBattery(50); // now they can chain properly
-
-console.log(rivian.speedUS); // chile also inherits setters and getters
