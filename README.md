@@ -1,2 +1,4 @@
 Jonas-Js
-# Jonas-Js
+# Jonas-Js 
+
+Thought about code
